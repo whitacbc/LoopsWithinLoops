@@ -313,7 +313,7 @@ def triangle_all_numbers_in_each_row(r):
     for i in range(r+2):
         for k in range(1,i):
             print(k,end='')
-        print()
+        print( )
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
