@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Brian Whitacre.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -80,9 +80,36 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    new_circle = circle
+
+    for i in range(r+1):
+        new_circle = rg.Circle(rg.Point(circle.center.x,circle.radius * 2 * i + circle.center.y),new_circle.radius)
+        new_circle.fill_color = circle.fill_color
+        new_circle.attach_to(window)
+        window.render(.1)
+
+
+        if i > r - 3 :
+            row_length = c +3
+        else:
+            row_length = 3
+
+        for k in range(row_length):
+            new_circle = rg.Circle(rg.Point(circle.radius*2 * k + circle.center.x,new_circle.center.y ),new_circle.radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render(.1)
+
+
+
+
+
+
+
+
 
 
 def run_test_draw_wall_on_right():
@@ -121,9 +148,27 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    rectanglec1x = rectangle.corner_1.x
+    rectanglec1y = rectangle.corner_1.y
+    rectanglec2x = rectangle.corner_2.x
+    rectanglec2y = rectangle.corner_2.y
+    lengthx = abs(rectanglec1x - rectanglec2x)
+    lengthy = abs(rectanglec1y - rectanglec2y)
+
+
+    for i in range(n):
+        for k in range(i+1):
+            rectangle = rg.Rectangle(rg.Point(rectanglec1x - lengthx * k,rectanglec1y),rg.Point(rectanglec2x - lengthx * k,rectanglec2y))
+            rectangle.attach_to(window)
+            window.render(.1)
+
+
+        rectanglec1y = rectanglec1y + lengthy
+        rectanglec2y = rectanglec2y + lengthy
+
 
 
 # ----------------------------------------------------------------------
